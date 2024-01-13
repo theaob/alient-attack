@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dww3umo3duapf"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_b38n3"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_bjk6p"]
 [ext_resource type="Texture2D" uid="uid://ct6hkhcescahl" path="res://assets/textures/player_ship.png" id="2_7gqxk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_op6wy"]
@@ -11,7 +11,7 @@ height = 470.0
 rotation = 1.5708
 scale = Vector2(0.2, 0.2)
 motion_mode = 1
-script = ExtResource("1_b38n3")
+script = ExtResource("1_bjk6p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7gqxk")
