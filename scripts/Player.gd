@@ -1,12 +1,9 @@
 extends CharacterBody2D
 
-@export var SPEED = 400
+const SPEED = 400
 
 const ROCKET_SCENE = preload("res://scenes/rocket.tscn")
-var rocket_container
-
-func _ready():
-	rocket_container = get_node("RocketContainer")
+@onready var rocket_container = get_node("RocketContainer")
 
 func _physics_process(_delta):
 	
