@@ -5,6 +5,8 @@ const SPEED = 400
 const ROCKET_SCENE = preload("res://scenes/rocket.tscn")
 @onready var rocket_container = get_node("RocketContainer")
 
+var rockets_fired = 0
+
 func _physics_process(_delta):
 	
 	var rightPressed = Input.is_action_pressed("move_right")
@@ -34,6 +36,8 @@ func shoot():
 	var rocket_instance = ROCKET_SCENE.instantiate()
 	
 	rocket_container.add_child(rocket_instance)
+	
+	rockets_fired += 1
 	
 	rocket_instance.global_position.x = global_position.x + 80
 	rocket_instance.global_position.y = global_position.y
