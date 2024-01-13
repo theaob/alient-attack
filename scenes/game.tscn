@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c36awg18s4q4d"]
+[gd_scene load_steps=5 format=3 uid="uid://c36awg18s4q4d"]
 
 [ext_resource type="Texture2D" uid="uid://bikouka3d5kfk" path="res://assets/textures/bg.png" id="1_ncudr"]
 [ext_resource type="PackedScene" uid="uid://dww3umo3duapf" path="res://scenes/player.tscn" id="2_4u3hj"]
 [ext_resource type="PackedScene" uid="uid://s22oqlnolwd1" path="res://scenes/rocket.tscn" id="3_4ne5r"]
+[ext_resource type="PackedScene" uid="uid://cnl1kiqywp53h" path="res://scenes/enemy.tscn" id="4_acws6"]
 
 [node name="Game" type="Node2D"]
 
@@ -17,3 +18,6 @@ position = Vector2(74, 333)
 
 [node name="Rocket" parent="." instance=ExtResource("3_4ne5r")]
 position = Vector2(191, 341)
+
+[node name="Enemy" parent="." instance=ExtResource("4_acws6")]
+position = Vector2(886, 316)
