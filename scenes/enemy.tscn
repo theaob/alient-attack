@@ -29,3 +29,8 @@ shape = SubResource("CircleShape2D_40l4v")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 position = Vector2(-108, 40)
 shape = SubResource("CircleShape2D_40l4v")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.08404e-05, -248)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
