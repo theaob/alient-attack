@@ -1,6 +1,12 @@
 extends CharacterBody2D
 
-const SPEED = 400
+@export var SPEED = 400
+
+const ROCKET_SCENE = preload("res://scenes/rocket.tscn")
+var rocket_container
+
+func _ready():
+	rocket_container = get_node("RocketContainer")
 
 func _physics_process(_delta):
 	
@@ -23,4 +29,15 @@ func _physics_process(_delta):
 	
 	global_position = global_position.clamp(Vector2.ZERO, get_viewport_rect().size)
 	
-	pass
+func _process(_delta):
+	var isFiring = Input.is_action_just_pressed("fire_rocket")
+	if isFiring: shoot()
+	
+func shoot():
+	var rocket_instance = ROCKET_SCENE.instantiate()
+	
+	rocket_container.add_child(rocket_instance)
+	
+	rocket_instance.global_position.x = global_position.x + 80
+	rocket_instance.global_position.y = global_position.y
+	
