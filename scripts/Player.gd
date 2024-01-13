@@ -21,10 +21,6 @@ func _physics_process(_delta):
 
 	move_and_slide()
 	
-	var windowWidth = get_viewport_rect().size.x
-	var windowHeight = get_viewport_rect().size.y
-	
-	global_position.x = clampf(global_position.x, 0, windowWidth)
-	global_position.y = clampf(global_position.y, 0, windowHeight)
+	global_position = global_position.clamp(Vector2.ZERO, get_viewport_rect().size)
 	
 	pass
