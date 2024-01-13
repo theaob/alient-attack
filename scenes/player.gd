@@ -21,4 +21,12 @@ func _physics_process(_delta):
 
 	move_and_slide()
 	
+	var windowWidth = get_viewport_rect().size.x
+	var windowHeight = get_viewport_rect().size.y
+	
+	if global_position.x < 0 : global_position.x = 0
+	if global_position.x > windowWidth : global_position.x = windowWidth
+	if global_position.y < 0 : global_position.y = 0
+	if global_position.y > windowHeight : global_position.y = windowHeight
+	
 	pass
