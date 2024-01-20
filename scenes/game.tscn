@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c36awg18s4q4d"]
+[gd_scene load_steps=11 format=3 uid="uid://c36awg18s4q4d"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_fn7qh"]
 [ext_resource type="Texture2D" uid="uid://bikouka3d5kfk" path="res://assets/textures/bg.png" id="1_ncudr"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cnl1kiqywp53h" path="res://scenes/enemy.tscn" id="4_acws6"]
 [ext_resource type="PackedScene" uid="uid://8mu30afu1dow" path="res://scenes/enemy_spawner.tscn" id="6_r0hcx"]
 [ext_resource type="PackedScene" uid="uid://ddqfryuxhfimg" path="res://scenes/ui.tscn" id="7_vpmi3"]
+[ext_resource type="AudioStream" uid="uid://5h3koopmdqqp" path="res://assets/audio/hit.wav" id="8_ccnpt"]
+[ext_resource type="AudioStream" uid="uid://d1femxa5qnns8" path="res://assets/audio/explode.wav" id="9_g7lqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lr1ib"]
 size = Vector2(158, 728)
@@ -42,6 +44,12 @@ shape = SubResource("RectangleShape2D_lr1ib")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UI" instance=ExtResource("7_vpmi3")]
+
+[node name="EnemyHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ccnpt")
+
+[node name="PlayerExplodeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_g7lqa")
 
 [connection signal="took_damage" from="Player" to="." method="_on_player_took_damage"]
 [connection signal="died" from="Enemy" to="." method="_on_enemy_died"]

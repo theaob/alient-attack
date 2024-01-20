@@ -3,7 +3,9 @@ extends CharacterBody2D
 const SPEED = 400
 
 const ROCKET_SCENE = preload("res://scenes/rocket.tscn")
-@onready var rocket_container = get_node("RocketContainer")
+
+@onready var rocket_container = $RocketContainer
+@onready var rocket_shot_sound = $RocketShotSound
 
 signal took_damage
 
@@ -38,6 +40,7 @@ func shoot():
 	var rocket_instance = ROCKET_SCENE.instantiate()
 	
 	rocket_container.add_child(rocket_instance)
+	rocket_shot_sound.play()
 	
 	rockets_fired += 1
 	

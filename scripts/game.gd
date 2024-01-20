@@ -6,6 +6,9 @@ var points = 0;
 @onready var player = $Player
 @onready var ui = $UI
 @onready var hud = $UI/HUD 
+@onready var enemy_hit_sound = $EnemyHitSound
+@onready var player_explode_sound = $PlayerExplodeSound
+
 const GAME_OVER_SCENE = preload("res://scenes/game_over_screen.tscn")
 
 func _ready():
@@ -33,6 +36,7 @@ func lose_life():
 	
 	if player_lives == 0:
 		print("Game over.")
+		player_explode_sound.play()
 		player.die()
 		show_game_over_screen()
 	else:
@@ -43,6 +47,7 @@ func _on_enemy_died():
 	points += 100
 	update_hud()
 	print("Current points: ", points)
+	enemy_hit_sound.play()
 
 func _on_enemy_spawner_enemy_spawned(enemy_instance):
 	print("Enemy spawned.")
