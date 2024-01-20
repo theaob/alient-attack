@@ -11,15 +11,19 @@ func _on_deathzone_area_entered(area):
 	lose_life()
 
 func _on_player_took_damage():
+	print("Player took damage.")
 	lose_life()
 
 func lose_life():
-	print("Player lost a life.")
-	player_lives -= 1;
-	print("Remaning lives: ", player_lives)
-	if player_lives == 0 :
+	if player_lives > 0:
+		print("Player lost a life.")
+		player_lives -= 1
+	
+	if player_lives == 0:
 		print("Game over.")
 		player.die()
+	else:
+		print("Remaning lives: ", player_lives)
 
 func _on_enemy_died():
 	print("Enemy died. Will grant points.")
