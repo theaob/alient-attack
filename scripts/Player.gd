@@ -5,6 +5,8 @@ const SPEED = 400
 const ROCKET_SCENE = preload("res://scenes/rocket.tscn")
 @onready var rocket_container = get_node("RocketContainer")
 
+signal took_damage
+
 var rockets_fired = 0
 
 func _physics_process(_delta):
@@ -42,3 +44,10 @@ func shoot():
 	rocket_instance.global_position.x = global_position.x + 80
 	rocket_instance.global_position.y = global_position.y
 	
+func takeDamage():
+	print("Player took damage.")
+	emit_signal("took_damage")
+
+func die():
+	print("Player died.")
+	queue_free()

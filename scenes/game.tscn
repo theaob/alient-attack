@@ -19,7 +19,7 @@ offset_bottom = 720.0
 texture = ExtResource("1_ncudr")
 stretch_mode = 1
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_4u3hj")]
+[node name="Player" parent="." instance=ExtResource("2_4u3hj")]
 position = Vector2(74, 333)
 
 [node name="Rocket" parent="." instance=ExtResource("3_4ne5r")]
@@ -38,4 +38,5 @@ collision_mask = 2
 position = Vector2(-283, 351)
 shape = SubResource("RectangleShape2D_lr1ib")
 
+[connection signal="took_damage" from="Player" to="." method="_on_player_took_damage"]
 [connection signal="area_entered" from="Deathzone" to="." method="_on_deathzone_area_entered"]
