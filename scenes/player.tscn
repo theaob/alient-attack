@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dww3umo3duapf"]
+[gd_scene load_steps=6 format=3 uid="uid://dww3umo3duapf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_bjk6p"]
 [ext_resource type="Texture2D" uid="uid://ct6hkhcescahl" path="res://assets/textures/player_ship.png" id="2_7gqxk"]
 [ext_resource type="AudioStream" uid="uid://bp64bdqnje55u" path="res://assets/audio/sfx_laser2.wav" id="3_t454g"]
+[ext_resource type="Material" uid="uid://ckbds3nqnlcfj" path="res://assets/particles/player_movement_particle.tres" id="4_wmda0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_op6wy"]
 radius = 55.0
@@ -27,3 +28,34 @@ shape = SubResource("CapsuleShape2D_op6wy")
 
 [node name="RocketShotSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_t454g")
+
+[node name="RightMovementParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0.000671387, 180)
+amount = 100
+process_material = ExtResource("4_wmda0")
+explosiveness = 0.1
+
+[node name="LeftMovementParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-0.000610352, -185)
+rotation = 3.14159
+scale = Vector2(1, 1)
+amount = 100
+process_material = ExtResource("4_wmda0")
+explosiveness = 0.1
+
+[node name="UpMovementParticles" type="GPUParticles2D" parent="."]
+position = Vector2(265, -50.001)
+rotation = -1.5708
+scale = Vector2(1, 1)
+amount = 100
+process_material = ExtResource("4_wmda0")
+lifetime = 0.4
+explosiveness = 0.1
+
+[node name="DownMovementParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-260, -49.9991)
+rotation = 1.5708
+scale = Vector2(0.999999, 0.999999)
+amount = 100
+process_material = ExtResource("4_wmda0")
+explosiveness = 0.1

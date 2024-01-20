@@ -6,10 +6,20 @@ const ROCKET_SCENE = preload("res://scenes/rocket.tscn")
 
 @onready var rocket_container = $RocketContainer
 @onready var rocket_shot_sound = $RocketShotSound
+@onready var right_movement_partices = $RightMovementParticles
+@onready var left_movement_partices = $LeftMovementParticles
+@onready var up_movement_partices = $UpMovementParticles
+@onready var down_movement_partices = $DownMovementParticles
 
 signal took_damage
 
 var rockets_fired = 0
+
+func _ready():
+	right_movement_partices.emitting = false	
+	left_movement_partices.emitting = false	
+	up_movement_partices.emitting = false	
+	down_movement_partices.emitting = false	
 
 func _physics_process(_delta):
 	
@@ -18,13 +28,26 @@ func _physics_process(_delta):
 	var upPressed = Input.is_action_pressed("move_up")
 	var downPressed = Input.is_action_pressed("move_down")
 	
+	right_movement_partices.emitting = false	
+	left_movement_partices.emitting = false	
+	up_movement_partices.emitting = false	
+	down_movement_partices.emitting = false	
+	
 	var xVelocity = 0;
 	var yVelocity = 0;
 	
-	if rightPressed: xVelocity += SPEED
-	if leftPressed: xVelocity -= SPEED
-	if upPressed: yVelocity -= SPEED
-	if downPressed: yVelocity += SPEED
+	if rightPressed: 
+		xVelocity += SPEED
+		right_movement_partices.emitting = true
+	if leftPressed: 
+		xVelocity -= SPEED
+		left_movement_partices.emitting = true
+	if upPressed: 
+		yVelocity -= SPEED
+		up_movement_partices.emitting = true
+	if downPressed: 
+		yVelocity += SPEED
+		down_movement_partices.emitting = true
 	
 	velocity = Vector2(xVelocity,yVelocity)
 

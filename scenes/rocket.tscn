@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://s22oqlnolwd1"]
+[gd_scene load_steps=9 format=3 uid="uid://s22oqlnolwd1"]
 
 [ext_resource type="Script" path="res://scripts/rocket.gd" id="1_13xnu"]
 [ext_resource type="Texture2D" uid="uid://ck1hnp6yueglx" path="res://assets/textures/rocket.png" id="1_f05f1"]
@@ -6,6 +6,35 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x4p7t"]
 radius = 15.0
 height = 76.0
+
+[sub_resource type="Gradient" id="Gradient_kk4gv"]
+offsets = PackedFloat32Array(0, 0.525926, 1)
+colors = PackedColorArray(1, 0.815686, 0, 0, 1, 0.447059, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jlcps"]
+gradient = SubResource("Gradient_kk4gv")
+
+[sub_resource type="Curve" id="Curve_qw81p"]
+_data = [Vector2(0, 0.0842105), 0.0, 0.567327, 0, 0, Vector2(0.481928, 0.157895), -0.800877, -0.800877, 0, 0, Vector2(1, 0.0842105), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yhuqo"]
+curve = SubResource("Curve_qw81p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4p6se"]
+lifetime_randomness = 0.2
+emission_shape = 3
+emission_box_extents = Vector3(1, 10, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 20.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 10.0
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_yhuqo")
+color_ramp = SubResource("GradientTexture1D_jlcps")
 
 [node name="Rocket" type="Area2D"]
 collision_layer = 4
@@ -22,6 +51,13 @@ shape = SubResource("CapsuleShape2D_x4p7t")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-27, 0)
+
+[node name="RightMovementParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-26, 0)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_4p6se")
+lifetime = 0.4
+explosiveness = 0.1
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
