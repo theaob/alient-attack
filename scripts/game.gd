@@ -6,6 +6,9 @@ var points = 0;
 @onready var player = $Player
 @onready var hud = $UI/HUD 
 
+func _ready():
+	hud.update_score(0)
+
 func _on_deathzone_area_entered(area):
 	print("Enemy entered death zone.")
 	area.destroy()

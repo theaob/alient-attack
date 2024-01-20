@@ -18,5 +18,5 @@ script = ExtResource("1_wxvbq")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-text = "SCORE: 0"
+text = "SCORE: -999"
 label_settings = SubResource("LabelSettings_f8pmp")
