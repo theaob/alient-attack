@@ -1,10 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c36awg18s4q4d"]
+[gd_scene load_steps=9 format=3 uid="uid://c36awg18s4q4d"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_fn7qh"]
 [ext_resource type="Texture2D" uid="uid://bikouka3d5kfk" path="res://assets/textures/bg.png" id="1_ncudr"]
 [ext_resource type="PackedScene" uid="uid://dww3umo3duapf" path="res://scenes/player.tscn" id="2_4u3hj"]
-[ext_resource type="PackedScene" uid="uid://s22oqlnolwd1" path="res://scenes/rocket.tscn" id="3_4ne5r"]
-[ext_resource type="PackedScene" uid="uid://cnl1kiqywp53h" path="res://scenes/enemy.tscn" id="4_acws6"]
 [ext_resource type="PackedScene" uid="uid://8mu30afu1dow" path="res://scenes/enemy_spawner.tscn" id="6_r0hcx"]
 [ext_resource type="PackedScene" uid="uid://ddqfryuxhfimg" path="res://scenes/ui.tscn" id="7_vpmi3"]
 [ext_resource type="AudioStream" uid="uid://5h3koopmdqqp" path="res://assets/audio/hit.wav" id="8_ccnpt"]
@@ -24,12 +22,6 @@ stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_4u3hj")]
 position = Vector2(74, 333)
-
-[node name="Rocket" parent="." instance=ExtResource("3_4ne5r")]
-position = Vector2(191, 341)
-
-[node name="Enemy" parent="." instance=ExtResource("4_acws6")]
-position = Vector2(1202, 341)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("6_r0hcx")]
 
@@ -52,6 +44,6 @@ stream = ExtResource("8_ccnpt")
 stream = ExtResource("9_g7lqa")
 
 [connection signal="took_damage" from="Player" to="." method="_on_player_took_damage"]
-[connection signal="died" from="Enemy" to="." method="_on_enemy_died"]
 [connection signal="enemy_spawned" from="EnemySpawner" to="." method="_on_enemy_spawner_enemy_spawned"]
+[connection signal="path_enemy_spawned" from="EnemySpawner" to="." method="_on_enemy_spawner_path_enemy_spawned"]
 [connection signal="area_entered" from="Deathzone" to="." method="_on_deathzone_area_entered"]

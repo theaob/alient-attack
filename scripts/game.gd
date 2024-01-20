@@ -54,6 +54,11 @@ func _on_enemy_spawner_enemy_spawned(enemy_instance):
 	add_child(enemy_instance)
 	enemy_instance.connect("died", _on_enemy_died)
 
+func _on_enemy_spawner_path_enemy_spawned(path_enemy_instance):
+	print("Path enemy spawned.")
+	add_child(path_enemy_instance)
+	path_enemy_instance.enemy.connect("died", _on_enemy_died)
+
 func show_game_over_screen():
 	await get_tree().create_timer(1).timeout
 	var game_over_scene_instance = GAME_OVER_SCENE.instantiate()
@@ -68,4 +73,3 @@ func _on_game_over_screen_quit_pressed():
 
 func _on_game_over_screen_retry_pressed():
 	print("Player will retry.")
-	
