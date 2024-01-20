@@ -4,7 +4,9 @@ var player_lives = 3;
 var points = 0;
 
 @onready var player = $Player
+@onready var ui = $UI
 @onready var hud = $UI/HUD 
+const GAME_OVER_SCENE = preload("res://scenes/game_over_screen.tscn")
 
 func _ready():
 	update_hud()
@@ -23,15 +25,16 @@ func _on_player_took_damage():
 	lose_life()
 
 func lose_life():
-	if player_lives > 0:
-		print("Player lost a life.")
-		player_lives -= 1
+	player_lives -= 1
 	
-	update_hud()
+	if player_lives >= 0:
+		print("Player lost a life.")
+		update_hud()
 	
 	if player_lives == 0:
 		print("Game over.")
 		player.die()
+		show_game_over_screen()
 	else:
 		print("Remaning lives: ", player_lives)
 
@@ -45,3 +48,15 @@ func _on_enemy_spawner_enemy_spawned(enemy_instance):
 	print("Enemy spawned.")
 	add_child(enemy_instance)
 	enemy_instance.connect("died", _on_enemy_died)
+
+func show_game_over_screen():
+	await get_tree().create_timer(1).timeout
+	var game_over_scene_instance = GAME_OVER_SCENE.instantiate()
+	game_over_scene_instance.set_score(points)
+	ui.add_child(game_over_scene_instance)
+
+func _on_game_over_screen_quit_pressed():
+	pass # Replace with function body.
+
+func _on_game_over_screen_retry_pressed():
+	pass # Replace with function body.

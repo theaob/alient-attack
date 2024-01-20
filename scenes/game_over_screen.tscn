@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3 uid="uid://epilrim8ed8e"]
+
+[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="1_pqsy3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s330o"]
+bg_color = Color(0.62, 0.124, 0, 0.52549)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_cb1kl"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_fg2n8"]
+font_size = 44
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pqsy3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -173.0
+offset_right = 265.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s330o")
+
+[node name="GameOver" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -171.0
+offset_top = 19.0
+offset_right = 172.0
+offset_bottom = -184.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_cb1kl")
+
+[node name="Score" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -32.0
+offset_right = 94.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE: 0"
+label_settings = SubResource("LabelSettings_fg2n8")
+
+[node name="QuitButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -80.0
+offset_right = 180.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 44
+text = "QUIT"
+
+[node name="RetryButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -171.0
+offset_top = -80.0
+offset_right = -3.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 44
+text = "RETRY"
+
+[connection signal="pressed" from="Panel/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Panel/RetryButton" to="." method="_on_retry_button_pressed"]

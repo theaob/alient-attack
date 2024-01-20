@@ -20,9 +20,11 @@ script = ExtResource("1_wxvbq")
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "SCORE: -999"
+offset_left = 15.0
+offset_right = 91.0
+offset_bottom = 50.0
+text = "9999
+"
 label_settings = SubResource("LabelSettings_f8pmp")
 
 [node name="LifeTextureRect" type="TextureRect" parent="."]
