@@ -32,11 +32,11 @@ func lose_life():
 	
 	if player_lives >= 0:
 		print("Player lost a life.")
+		player_explode_sound.play()		
 		update_hud()
 	
 	if player_lives == 0:
 		print("Game over.")
-		player_explode_sound.play()
 		player.die()
 		show_game_over_screen()
 	else:
@@ -59,9 +59,13 @@ func show_game_over_screen():
 	var game_over_scene_instance = GAME_OVER_SCENE.instantiate()
 	game_over_scene_instance.set_score(points)
 	ui.add_child(game_over_scene_instance)
+	game_over_scene_instance.connect("quit_pressed", _on_game_over_screen_quit_pressed)
+	game_over_scene_instance.connect("retry_pressed", _on_game_over_screen_retry_pressed)
+	
 
 func _on_game_over_screen_quit_pressed():
-	pass # Replace with function body.
+	print("Quitting.")
 
 func _on_game_over_screen_retry_pressed():
-	pass # Replace with function body.
+	print("Player will retry.")
+	
