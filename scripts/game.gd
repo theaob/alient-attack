@@ -1,7 +1,6 @@
 extends Node2D
 
-var player_lives = 3;
-var points = 0;
+const GAME_OVER_SCENE = preload("res://scenes/game_over_screen.tscn")
 
 @onready var player = $Player
 @onready var ui = $UI
@@ -9,7 +8,8 @@ var points = 0;
 @onready var enemy_hit_sound = $EnemyHitSound
 @onready var player_explode_sound = $PlayerExplodeSound
 
-const GAME_OVER_SCENE = preload("res://scenes/game_over_screen.tscn")
+var player_lives = 3;
+var points = 0;
 
 func _ready():
 	update_hud()
@@ -66,7 +66,6 @@ func show_game_over_screen():
 	ui.add_child(game_over_scene_instance)
 	game_over_scene_instance.connect("quit_pressed", _on_game_over_screen_quit_pressed)
 	game_over_scene_instance.connect("retry_pressed", _on_game_over_screen_retry_pressed)
-	
 
 func _on_game_over_screen_quit_pressed():
 	print("Quitting.")
