@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddqfryuxhfimg"]
+[gd_scene load_steps=5 format=3 uid="uid://ddqfryuxhfimg"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_wxvbq"]
+[ext_resource type="Texture2D" uid="uid://dbe8b28tmcssy" path="res://assets/textures/orb.png" id="2_fbbxu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f8pmp"]
-font_size = 25
+font_size = 34
+
+[sub_resource type="LabelSettings" id="LabelSettings_y0uwr"]
+font_size = 32
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -20,3 +24,21 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "SCORE: -999"
 label_settings = SubResource("LabelSettings_f8pmp")
+
+[node name="LifeTextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 50.0
+offset_right = 141.0
+offset_bottom = 168.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_fbbxu")
+
+[node name="Lives" type="Label" parent="."]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 50.0
+offset_right = 145.0
+offset_bottom = 98.0
+text = "x 999"
+label_settings = SubResource("LabelSettings_y0uwr")

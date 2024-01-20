@@ -7,7 +7,11 @@ var points = 0;
 @onready var hud = $UI/HUD 
 
 func _ready():
-	hud.update_score(0)
+	update_hud()
+	
+func update_hud():
+	hud.update_score(points)
+	hud.update_lives(player_lives)
 
 func _on_deathzone_area_entered(area):
 	print("Enemy entered death zone.")
@@ -23,6 +27,8 @@ func lose_life():
 		print("Player lost a life.")
 		player_lives -= 1
 	
+	update_hud()
+	
 	if player_lives == 0:
 		print("Game over.")
 		player.die()
@@ -32,7 +38,7 @@ func lose_life():
 func _on_enemy_died():
 	print("Enemy died. Will grant points.")
 	points += 100
-	hud.update_score(points)
+	update_hud()
 	print("Current points: ", points)
 
 func _on_enemy_spawner_enemy_spawned(enemy_instance):
