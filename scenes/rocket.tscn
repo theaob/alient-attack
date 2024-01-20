@@ -3,10 +3,6 @@
 [ext_resource type="Script" path="res://scripts/rocket.gd" id="1_13xnu"]
 [ext_resource type="Texture2D" uid="uid://ck1hnp6yueglx" path="res://assets/textures/rocket.png" id="1_f05f1"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x4p7t"]
-radius = 15.0
-height = 76.0
-
 [sub_resource type="Gradient" id="Gradient_kk4gv"]
 offsets = PackedFloat32Array(0, 0.525926, 1)
 colors = PackedColorArray(1, 0.815686, 0, 0, 1, 0.447059, 0, 1, 1, 0, 0, 0)
@@ -36,10 +32,21 @@ scale_max = 20.0
 scale_curve = SubResource("CurveTexture_yhuqo")
 color_ramp = SubResource("GradientTexture1D_jlcps")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x4p7t"]
+radius = 15.0
+height = 76.0
+
 [node name="Rocket" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_13xnu")
+
+[node name="RightMovementParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-26, 0)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_4p6se")
+lifetime = 0.4
+explosiveness = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
@@ -51,13 +58,6 @@ shape = SubResource("CapsuleShape2D_x4p7t")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-27, 0)
-
-[node name="RightMovementParticles" type="GPUParticles2D" parent="."]
-position = Vector2(-26, 0)
-amount = 100
-process_material = SubResource("ParticleProcessMaterial_4p6se")
-lifetime = 0.4
-explosiveness = 0.1
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
