@@ -69,6 +69,8 @@ func show_game_over_screen():
 
 func _on_game_over_screen_quit_pressed():
 	print("Quitting.")
+	get_tree().quit()
 
 func _on_game_over_screen_retry_pressed():
 	print("Player will retry.")
+	get_tree().reload_current_scene()
